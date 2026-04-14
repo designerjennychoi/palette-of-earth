@@ -1,3 +1,9 @@
+---
+name: component-work
+description: Creates, modifies, deletes UI components and their Storybook stories. Manages component taxonomy, design tokens, and interactive patterns for MUI-based design system.
+when_to_use: When user asks to create, modify, delete, or refactor components or stories. Trigger phrases include making new components, editing existing ones, adding stories, or working with the component taxonomy.
+---
+
 # Component Work Skill
 
 > 컴포넌트 생성, 수정, 삭제, 스토리 작업 시 활성화되는 워크플로우

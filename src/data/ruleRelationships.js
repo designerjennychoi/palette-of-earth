@@ -1,8 +1,11 @@
 /**
- * 프로젝트 룰 관계 데이터
+ * 프로젝트 룰 관계 데이터 (자동 생성)
  *
- * CLAUDE.md를 포함한 모든 프로젝트 룰의 노드, 엣지, 메타데이터를 정의합니다.
- * 룰 추가/수정/삭제 시 이 파일도 함께 업데이트해야 합니다.
+ * 이 파일은 scripts/generate-rules.js 에 의해 자동 생성됩니다.
+ * 직접 수정하지 마세요. 수정이 필요하면 스크립트를 수정하세요.
+ *
+ * 생성: pnpm generate-rules
+ * 생성일: 2026-04-14
  */
 
 export const priorityMeta = {
@@ -15,103 +18,125 @@ export const priorityMeta = {
 };
 
 export const ruleNodes = [
-  // Root
   {
-    id: 'claude-md',
-    name: 'CLAUDE.md',
-    priority: 'root',
-    path: 'CLAUDE.md',
-    description: '프로젝트 규칙 진입점 (~80줄, 라우터 역할)',
-  },
-  // CRITICAL
-  {
-    id: 'project-summary',
-    name: 'project-summary.md',
-    priority: 'CRITICAL',
-    path: '.claude/rules/project-summary.md',
-    description: '프로젝트 개요, 기술 스택, 핵심 원칙',
+    "id": "claude-md",
+    "name": "CLAUDE.md",
+    "priority": "root",
+    "path": "CLAUDE.md",
+    "description": "프로젝트 규칙 진입점 (라우터 역할)"
   },
   {
-    id: 'mui-grid-usage',
-    name: 'mui-grid-usage.md',
-    priority: 'CRITICAL',
-    path: '.claude/rules/mui-grid-usage.md',
-    description: 'MUI Grid import 규칙 (Grid2 사용 금지)',
-  },
-  // MUST
-  {
-    id: 'code-convention',
-    name: 'code-convention.md',
-    priority: 'MUST',
-    path: '.claude/rules/code-convention.md',
-    description: 'JS/React 코드 컨벤션, Props 관리 규칙',
+    "id": "code-convention",
+    "name": "code-convention.md",
+    "priority": "MUST",
+    "path": ".claude/rules/code-convention.md",
+    "description": "JavaScript + React.js 코드 작성 규칙"
   },
   {
-    id: 'design-system',
-    name: 'design-system.md',
-    priority: 'MUST',
-    path: '.claude/rules/design-system.md',
-    description: '디자인 시스템 원칙, 토큰 사용, 스타일링 규칙',
-  },
-  // SHOULD
-  {
-    id: 'easy-refactoring',
-    name: 'easy-refactoring.md',
-    priority: 'SHOULD',
-    path: '.claude/rules/easy-refactoring.md',
-    description: '리팩토링 가이드, 기능/로직/형태 보존 원칙',
+    "id": "design-system",
+    "name": "design-system.md",
+    "priority": "MUST",
+    "path": ".claude/rules/design-system.md",
+    "description": "새로운 컴포넌트를 만들기 전에 반드시 기존 컴포넌트로 대체 가능한지 확인하고, 가능하면 최대한 재활용해라. 불필요한 중복 컴포넌트 생성을 피해야 함."
   },
   {
-    id: 'mui-theme',
-    name: 'mui-theme.md',
-    priority: 'SHOULD',
-    path: '.claude/rules/mui-theme.md',
-    description: 'MUI 커스텀 테마 설정 (Typography, Color, Elevation)',
-  },
-  // Skill
-  {
-    id: 'component-work',
-    name: 'component-work (Skill)',
-    priority: 'Skill',
-    path: '.claude/skills/component-work/SKILL.md',
-    description: '컴포넌트 생성/수정/삭제/스토리 워크플로우 (의도 기반 활성화)',
-  },
-  // Skill Resources
-  {
-    id: 'storybook-writing',
-    name: 'storybook-writing.md',
-    priority: 'Skill Resource',
-    path: '.claude/skills/component-work/resources/storybook-writing.md',
-    description: 'Storybook 스토리 작성 규칙, 카테고리 구조',
+    "id": "directory-structure",
+    "name": "directory-structure.md",
+    "priority": "MUST",
+    "path": ".claude/rules/directory-structure.md",
+    "description": "파일/컴포넌트 생성 시 반드시 아래 구조를 따른다."
   },
   {
-    id: 'interactive-component-principles',
-    name: 'interactive-principles.md',
-    priority: 'Skill Resource',
-    path: '.claude/skills/component-work/resources/interactive-principles.md',
-    description: '인터랙티브 컴포넌트 설계 원칙 (애니메이션, 성능, 클린업)',
+    "id": "mui-grid-usage",
+    "name": "mui-grid-usage.md",
+    "priority": "CRITICAL",
+    "path": ".claude/rules/mui-grid-usage.md",
+    "description": "```jsx"
   },
   {
-    id: 'taxonomy',
-    name: 'taxonomy-v0.4.md',
-    priority: 'Skill Resource',
-    path: '.claude/skills/component-work/resources/taxonomy-v0.4.md',
-    description: 'UI 컴포넌트 분류체계 (207개 항목, 21 카테고리)',
+    "id": "component-work",
+    "name": "component-work (Skill)",
+    "priority": "Skill",
+    "path": ".claude/skills/component-work/SKILL.md",
+    "description": "Creates, modifies, deletes UI components and their Storybook stories. Manages component taxonomy, design tokens, and interactive patterns for MUI-based design system."
   },
   {
-    id: 'taxonomy-index',
-    name: 'taxonomy-index.md',
-    priority: 'Skill Resource',
-    path: '.claude/skills/component-work/resources/taxonomy-index.md',
-    description: '텍소노미 빠른 참조 인덱스',
+    "id": "component-work--components",
+    "name": "components.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/components.md",
+    "description": "Vibe Dictionary 텍소노미 v0.4 기반 분류. 번호는 텍소노미 카테고리 번호."
   },
   {
-    id: 'project-directory',
-    name: 'project-directory.md',
-    priority: 'Skill Resource',
-    path: '.claude/skills/component-work/resources/project-directory.md',
-    description: '디렉토리 구조, 배치 가이드, 컴포넌트 추가 절차',
+    "id": "component-work--interactive-principles",
+    "name": "interactive-principles.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/interactive-principles.md",
+    "description": "> 기존 디자인 시스템 위에서 인터랙티브 컴포넌트 설계 시 따라야 할 원칙"
   },
+  {
+    "id": "component-work--mui-theme",
+    "name": "mui-theme.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/mui-theme.md",
+    "description": "MUI 커스텀 테마 설정 규칙"
+  },
+  {
+    "id": "component-work--project-summary",
+    "name": "project-summary.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/project-summary.md",
+    "description": "**Starter Kit Basic**은 React + MUI + Storybook 환경을 디자이너에게 마치 디자인 툴처럼 사용할 수 있도록 도와주는 개발 환경입니다."
+  },
+  {
+    "id": "component-work--refactoring-guide",
+    "name": "refactoring-guide.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/refactoring-guide.md",
+    "description": "> 리팩토링 작업 시 준수해야 할 가이드."
+  },
+  {
+    "id": "component-work--storybook-writing",
+    "name": "storybook-writing.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/storybook-writing.md",
+    "description": "Storybook 스토리 작성 시 준수해야 할 규칙"
+  },
+  {
+    "id": "component-work--taxonomy-index",
+    "name": "taxonomy-index.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/taxonomy-index.md",
+    "description": "> 전체 분류체계 빠른 참조용 인덱스"
+  },
+  {
+    "id": "component-work--taxonomy-v0-4",
+    "name": "taxonomy-v0.4.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/component-work/resources/taxonomy-v0.4.md",
+    "description": "---"
+  },
+  {
+    "id": "convert-external",
+    "name": "convert-external (Skill)",
+    "priority": "Skill",
+    "path": ".claude/skills/convert-external/SKILL.md",
+    "description": "Converts external code (TypeScript, Tailwind, styled-components) into project-compliant MUI sx-based JSX components. Handles type removal, style migration, and taxonomy classification."
+  },
+  {
+    "id": "convert-external--conversion-checklist",
+    "name": "conversion-checklist.md",
+    "priority": "Skill Resource",
+    "path": ".claude/skills/convert-external/resources/conversion-checklist.md",
+    "description": "> 외부 코드 분석 시 감지해야 할 항목과 변환 규칙"
+  },
+  {
+    "id": "rule-visualization",
+    "name": "rule-visualization (Skill)",
+    "priority": "Skill",
+    "path": ".claude/skills/rule-visualization/SKILL.md",
+    "description": "Syncs ruleRelationships.js data with actual .claude/ file structure and updates Storybook rule visualization. Run pnpm generate-rules instead for automated sync."
+  }
 ];
 
 export const edgeTypes = {
@@ -123,70 +148,184 @@ export const edgeTypes = {
 };
 
 export const ruleEdges = [
-  // CLAUDE.md → rules (자동 로드)
-  { from: 'claude-md', to: 'project-summary', type: 'loads' },
-  { from: 'claude-md', to: 'mui-grid-usage', type: 'loads' },
-  { from: 'claude-md', to: 'code-convention', type: 'loads' },
-  { from: 'claude-md', to: 'design-system', type: 'loads' },
-  { from: 'claude-md', to: 'easy-refactoring', type: 'loads' },
-  { from: 'claude-md', to: 'mui-theme', type: 'loads' },
-
-  // CLAUDE.md → Skill (의도 기반 활성화)
-  { from: 'claude-md', to: 'component-work', type: 'activates', note: '컴포넌트 작업 시' },
-
-  // Skill → Resources (on-demand Read)
-  { from: 'component-work', to: 'taxonomy-index', type: 'resources', note: '생성 시 카테고리 후보 파악' },
-  { from: 'component-work', to: 'taxonomy', type: 'resources', note: '카테고리 상세 필요 시' },
-  { from: 'component-work', to: 'storybook-writing', type: 'resources', note: '스토리 작성/수정 시' },
-  { from: 'component-work', to: 'interactive-component-principles', type: 'resources', note: '#11~#15 카테고리 작업 시' },
-  { from: 'component-work', to: 'project-directory', type: 'resources', note: '생성 시 위치 결정' },
+  {
+    "from": "claude-md",
+    "to": "code-convention",
+    "type": "loads"
+  },
+  {
+    "from": "claude-md",
+    "to": "design-system",
+    "type": "loads"
+  },
+  {
+    "from": "claude-md",
+    "to": "directory-structure",
+    "type": "loads"
+  },
+  {
+    "from": "claude-md",
+    "to": "mui-grid-usage",
+    "type": "loads"
+  },
+  {
+    "from": "claude-md",
+    "to": "component-work",
+    "type": "activates",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--components",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--interactive-principles",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--mui-theme",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--project-summary",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--refactoring-guide",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--storybook-writing",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--taxonomy-index",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "component-work",
+    "to": "component-work--taxonomy-v0-4",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "claude-md",
+    "to": "convert-external",
+    "type": "activates",
+    "note": ""
+  },
+  {
+    "from": "convert-external",
+    "to": "convert-external--conversion-checklist",
+    "type": "resources",
+    "note": ""
+  },
+  {
+    "from": "claude-md",
+    "to": "rule-visualization",
+    "type": "activates",
+    "note": ""
+  }
 ];
 
 export const conditionMatrix = [
   {
-    task: '컴포넌트 생성',
-    rules: ['design-system', 'code-convention'],
-    skill: 'component-work',
-    skillResources: ['taxonomy-index', 'project-directory', 'storybook-writing'],
+    "task": "컴포넌트 생성",
+    "rules": [
+      "code-convention",
+      "design-system"
+    ],
+    "skill": "component-work",
+    "skillResources": [
+      "component-work--taxonomy-index",
+      "component-work--storybook-writing"
+    ]
   },
   {
-    task: '컴포넌트 수정',
-    rules: ['design-system', 'code-convention'],
-    skill: 'component-work',
-    skillResources: ['storybook-writing'],
+    "task": "컴포넌트 수정",
+    "rules": [
+      "code-convention",
+      "design-system"
+    ],
+    "skill": "component-work",
+    "skillResources": [
+      "component-work--storybook-writing"
+    ]
   },
   {
-    task: '컴포넌트 삭제',
-    rules: [],
-    skill: 'component-work',
+    "task": "컴포넌트 삭제",
+    "rules": [],
+    "skill": "component-work"
   },
   {
-    task: '인터랙티브 컴포넌트',
-    rules: ['design-system', 'code-convention'],
-    skill: 'component-work',
-    skillResources: ['taxonomy-index', 'project-directory', 'interactive-component-principles', 'storybook-writing'],
+    "task": "인터랙티브 컴포넌트",
+    "rules": [
+      "code-convention",
+      "design-system"
+    ],
+    "skill": "component-work",
+    "skillResources": [
+      "component-work--taxonomy-index",
+      "component-work--interactive-principles",
+      "component-work--storybook-writing"
+    ]
   },
   {
-    task: '스토리 작성/수정',
-    rules: [],
-    skill: 'component-work',
-    skillResources: ['storybook-writing'],
+    "task": "스토리 작성/수정",
+    "rules": [],
+    "skill": "component-work",
+    "skillResources": [
+      "component-work--storybook-writing"
+    ]
   },
   {
-    task: '리팩토링',
-    rules: ['easy-refactoring', 'code-convention'],
+    "task": "외부 코드 변환",
+    "rules": [
+      "code-convention",
+      "design-system"
+    ],
+    "skill": "convert-external",
+    "skillResources": [
+      "convert-external--conversion-checklist"
+    ]
   },
   {
-    task: '테마/스타일 수정',
-    rules: ['mui-theme', 'design-system'],
+    "task": "리팩토링",
+    "rules": [
+      "code-convention"
+    ],
+    "skill": "component-work",
+    "skillResources": [
+      "component-work--refactoring-guide"
+    ]
   },
   {
-    task: 'Grid 사용',
-    rules: ['mui-grid-usage'],
+    "task": "테마/스타일 수정",
+    "rules": [
+      "design-system"
+    ],
+    "skillResources": [
+      "component-work--mui-theme"
+    ]
   },
   {
-    task: '룰 수정/추가',
-    rules: ['claude-md'],
-    note: 'ruleRelationships.js 동기화 필수',
-  },
+    "task": "Grid 사용",
+    "rules": [
+      "mui-grid-usage"
+    ]
+  }
 ];

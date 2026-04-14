@@ -32,8 +32,8 @@ sx={{ p: 2, m: 3, gap: 1 }}
 ```
 
 #### 아이콘
-- lucide-react 라이브러리 아이콘 우선 사용
-- `src/components/style/Icons.stories.jsx` 참고
+- @mui/icons-material, pixelarticons 아이콘 우선 사용
+- `src/stories/style/Icons.stories.jsx` 참고
 
 ## 스타일링 규칙
 

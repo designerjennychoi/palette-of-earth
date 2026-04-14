@@ -1,3 +1,9 @@
+---
+name: rule-visualization
+description: Syncs ruleRelationships.js data with actual .claude/ file structure and updates Storybook rule visualization. Run pnpm generate-rules instead for automated sync.
+disable-model-invocation: true
+---
+
 # Rule Visualization Skill
 
 > 룰/스킬 추가, 수정, 삭제 시 `ruleRelationships.js` 동기화와 Storybook 시각화를 담당하는 워크플로우

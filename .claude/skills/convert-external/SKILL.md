@@ -1,3 +1,9 @@
+---
+name: convert-external
+description: Converts external code (TypeScript, Tailwind, styled-components) into project-compliant MUI sx-based JSX components. Handles type removal, style migration, and taxonomy classification.
+when_to_use: When user pastes external code, references src/externalComponents/, or asks to convert, adapt, or migrate outside components to match project conventions.
+---
+
 # Convert External Skill
 
 > `src/externalComponents/`에 붙여넣은 외부 코드를 프로젝트 규칙에 맞게 변환하는 워크플로우
