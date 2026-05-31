@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { defaultTheme as theme } from './styles/themes';
+import PaletteOfEarth from './pages/PaletteOfEarth.jsx';
 
 function HomePage() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<HomePage />} />
+          <Route path="/palette-of-earth" element={<PaletteOfEarth />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

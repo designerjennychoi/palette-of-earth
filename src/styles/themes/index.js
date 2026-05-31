@@ -6,10 +6,12 @@
  */
 
 import defaultTheme from './default.js';
+import paletteOfEarthTheme from './palette-of-earth.js';
 
 /** 사용 가능한 테마 목록 */
 export const themes = {
   default: defaultTheme,
+  paletteOfEarth: paletteOfEarthTheme,
 };
 
 /** 테마 메타데이터 */
@@ -18,6 +20,11 @@ export const themeMeta = {
     name: 'Default',
     description: '프로젝트 기본 테마',
     mode: 'light',
+  },
+  paletteOfEarth: {
+    name: 'Palette of Earth',
+    description: '자연 색 탐색 웹사이트 전용 다크 테마',
+    mode: 'dark',
   },
 };
 
@@ -38,5 +45,5 @@ export const getTheme = (themeName) => {
  */
 export const getThemeNames = () => Object.keys(themes);
 
-export { defaultTheme };
+export { defaultTheme, paletteOfEarthTheme };
 export default themes;

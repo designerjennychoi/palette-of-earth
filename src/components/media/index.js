@@ -19,3 +19,9 @@ export { Indicator } from '../../common/ui/Indicator.jsx';
 
 // CarouselIndicator - 레거시 호환용 (Indicator 사용 권장)
 export { CarouselIndicator } from './CarouselIndicator.jsx';
+
+// ImageBlend - 두 이미지 레이어 블렌드 애니메이션
+export { default as ImageBlend } from './ImageBlend.jsx';
+
+// Globe - Three.js 인터랙티브 지구본 + SVG 모바일 폴백
+export { default as Globe } from './Globe.jsx';

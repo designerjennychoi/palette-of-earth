@@ -11,6 +11,11 @@ const googleFonts = [
   'Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
   // Default Theme Font
   'Outfit:wght@300;400;500;600;700;800;900',
+  // Palette of Earth Theme Fonts
+  'Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500',
+  'DM+Sans:wght@300;400;500;700',
+  'DM+Mono:wght@400;500',
+  'Noto+Serif+KR:wght@300;400;500',
 ];
 
 googleFonts.forEach((font) => {
@@ -50,6 +55,7 @@ const preview = {
             '8. Layout',
             '9. Overlay & Feedback',
             '10. Navigation',
+            '11. Dynamic Color',
           ],
           'Interactive',
           ['12. Scroll'],
