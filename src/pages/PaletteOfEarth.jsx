@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 import paletteOfEarthTheme from '../styles/themes/palette-of-earth.js';
 import regions from '../data/regions.js';
-import Globe from '../components/media/Globe.jsx';
+import GlobeD3 from '../components/media/GlobeD3.jsx';
 import RegionSection from '../components/layout/RegionSection.jsx';
 import ProgressNav from '../components/navigation/ProgressNav.jsx';
 
@@ -39,7 +39,7 @@ const navSections = [
 
 function HeroSection() {
   const heroRef = useRef(null);
-  const { activeRegion, setActiveRegion } = useRegion();
+  const { setActiveRegion } = useRegion();
 
   useEffect(() => {
     const el = heroRef.current;
@@ -133,7 +133,7 @@ function HeroSection() {
         transition={{ delay: 0.6, duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
         sx={{ flex: '0 0 auto' }}
       >
-        <Globe regions={regions} activeId={activeRegion} size={480} />
+        <GlobeD3 size={480} />
       </Box>
     </Box>
   );

@@ -23,5 +23,5 @@ export { CarouselIndicator } from './CarouselIndicator.jsx';
 // ImageBlend - 두 이미지 레이어 블렌드 애니메이션
 export { default as ImageBlend } from './ImageBlend.jsx';
 
-// Globe - Three.js 인터랙티브 지구본 + SVG 모바일 폴백
-export { default as Globe } from './Globe.jsx';
+// GlobeD3 - d3-geo 정사영 SVG 지구본 (자동 회전 · 드래그 · hover 색상 칩)
+export { default as GlobeD3 } from './GlobeD3.jsx';
