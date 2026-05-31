@@ -32,6 +32,3 @@ export { PageContainer } from './PageContainer.jsx';
 // AppShell - 반응형 앱 셸
 export { AppShell } from './AppShell.jsx';
 export { useAppShell } from './useAppShell.js';
-
-// RegionSection - Palette of Earth 지역 섹션
-export { default as RegionSection } from './RegionSection.jsx';

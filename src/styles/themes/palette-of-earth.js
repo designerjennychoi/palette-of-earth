@@ -7,7 +7,7 @@
  * ## 핵심 특성
  * - Dark base: #0D0C0B (따뜻한 검정, 순수 블랙 대비 자연스러움)
  * - Warm off-white text: #F0EBE3
- * - Editorial typography: Cormorant Garamond (heading) + DM Sans (body) + DM Mono (data)
+ * - Typography: Lexend 단일 패밀리 (heading · body · data 모두)
  */
 
 import { createTheme } from '@mui/material/styles';
@@ -59,15 +59,15 @@ const palette = {
 // ============================================================
 const typography = {
   fontFamily: [
-    '"DM Sans"',
+    '"Lexend"',
     'Pretendard',
     '-apple-system',
     'BlinkMacSystemFont',
     'sans-serif',
   ].join(','),
 
-  headingFontFamily: '"Cormorant Garamond", "Noto Serif KR", Georgia, serif',
-  monoFontFamily: '"DM Mono", "JetBrains Mono", monospace',
+  headingFontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
+  monoFontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
 
   fontSize: 14,
   htmlFontSize: 16,
@@ -79,7 +79,7 @@ const typography = {
 
   // Display — Hero 타이틀
   h1: {
-    fontFamily: '"Cormorant Garamond", "Noto Serif KR", Georgia, serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontWeight: 400,
     fontStyle: 'italic',
     fontSize: 'clamp(3.25rem, 8vw, 6.25rem)',
@@ -87,33 +87,33 @@ const typography = {
     letterSpacing: '-0.02em',
   },
   h2: {
-    fontFamily: '"Cormorant Garamond", "Noto Serif KR", Georgia, serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontWeight: 400,
     fontSize: 'clamp(2.75rem, 5vw, 4.25rem)',
     lineHeight: 1.1,
     letterSpacing: '-0.01em',
   },
   h3: {
-    fontFamily: '"DM Sans", Pretendard, sans-serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontWeight: 500,
     fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
     lineHeight: 1.2,
     letterSpacing: '0',
   },
   h4: {
-    fontFamily: '"DM Sans", Pretendard, sans-serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontWeight: 500,
     fontSize: '1.75rem',
     lineHeight: 1.3,
   },
   h5: {
-    fontFamily: '"DM Sans", Pretendard, sans-serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontWeight: 500,
     fontSize: '1.5rem',
     lineHeight: 1.4,
   },
   h6: {
-    fontFamily: '"DM Sans", Pretendard, sans-serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontWeight: 500,
     fontSize: '1.25rem',
     lineHeight: 1.4,
@@ -131,13 +131,13 @@ const typography = {
   },
 
   caption: {
-    fontFamily: '"DM Sans", Pretendard, sans-serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontSize: '1rem',
     lineHeight: 1.5,
     letterSpacing: '0.08em',
   },
   overline: {
-    fontFamily: '"DM Sans", Pretendard, sans-serif',
+    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
     fontSize: '0.9375rem',
     fontWeight: 500,
     lineHeight: 2,
@@ -239,7 +239,7 @@ const components = {
         border: '1px solid #2E2C28',
         borderRadius: 4,
         fontSize: '0.75rem',
-        fontFamily: '"DM Mono", monospace',
+        fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
       },
     },
   },

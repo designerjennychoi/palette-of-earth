@@ -10,11 +10,12 @@ import Box from '@mui/material/Box';
  * 마커에 hover하면 해당 색상 칩이 표시된다. (3D 의존성 없이 d3-geo만 사용)
  *
  * Props:
- * @param {object[]} countries - 마커 데이터 배열 (id, name, note, color, lat, lng) [Optional, 기본값: COUNTRIES]
- * @param {number}   size      - 렌더링 크기(px), 정사각형 [Optional, 기본값: 480]
+ * @param {object[]} countries     - 마커 데이터 배열 (id, name, note, color, lat, lng) [Optional, 기본값: COUNTRIES]
+ * @param {number}   size          - 렌더링 크기(px), 정사각형 [Optional, 기본값: 480]
+ * @param {function} onHoverCountry - 마커 hover 시 호출 (country 객체 전달, leave 시 null) [Optional]
  *
  * Example usage:
- * <GlobeD3 size={480} />
+ * <GlobeD3 size={480} onHoverCountry={(c) => setBg(c)} />
  */
 
 const COUNTRIES = [
@@ -61,10 +62,6 @@ const CX = W / 2;
 const CY = W / 2;
 const R = 300;
 
-const globeCss = `
-.poe-globe-chip-in{ animation: poeGlobeChipIn .18s ease-out; }
-@keyframes poeGlobeChipIn{ from{ opacity:0; transform: translateY(4px);} to{ opacity:1; transform:none; } }
-`;
 
 /** 경도를 -180~180 범위로 정규화 */
 function normLng(d) {
@@ -73,7 +70,7 @@ function normLng(d) {
   return d;
 }
 
-function GlobeD3({ countries = COUNTRIES, size = 480 }) {
+function GlobeD3({ countries = COUNTRIES, size = 480, onHoverCountry }) {
   const rotation = useRef([0, -12]); // [lambda, phi]
   const target = useRef(null);       // [lambda, phi] | null
   const dragging = useRef(false);
@@ -130,8 +127,6 @@ function GlobeD3({ countries = COUNTRIES, size = 480 }) {
     return { ...c, x: xy ? xy[0] : null, y: xy ? xy[1] : null, visible: dist < Math.PI / 2 - 0.02 };
   });
 
-  const hov = placed.find((c) => c.id === hovered && c.visible);
-
   // pointer drag
   const onDown = (e) => {
     dragging.current = true;
@@ -152,23 +147,12 @@ function GlobeD3({ countries = COUNTRIES, size = 480 }) {
   };
   const onUp = () => { dragging.current = false; setGrabbing(false); };
 
-  const enter = (c) => { hoverId.current = c.id; setHovered(c.id); };
-  const leave = () => { hoverId.current = null; setHovered(null); };
+  const enter = (c) => { hoverId.current = c.id; setHovered(c.id); onHoverCountry?.(c); };
+  const leave = () => { hoverId.current = null; setHovered(null); onHoverCountry?.(null); };
 
-  // chip placement
-  let chip = null;
-  if (hov) {
-    const cw = 212, chh = 96;
-    let cx = hov.x - cw / 2;
-    let cy = hov.y - chh - 22;
-    cx = Math.max(12, Math.min(W - cw - 12, cx));
-    if (cy < 12) cy = hov.y + 24;
-    chip = { x: cx, y: cy, w: cw, h: chh, c: hov };
-  }
 
   return (
     <Box sx={{ width: size, maxWidth: '100%', mx: 'auto' }}>
-      <style>{globeCss}</style>
       <svg
         viewBox={`0 0 ${W} ${W}`}
         style={{ width: '100%', height: 'auto', cursor: grabbing ? 'grabbing' : 'grab', touchAction: 'none' }}
@@ -177,51 +161,22 @@ function GlobeD3({ countries = COUNTRIES, size = 480 }) {
         onPointerUp={onUp}
         onPointerLeave={onUp}
       >
-        <defs>
-          <radialGradient id="poeGlobeOcean" cx="38%" cy="32%" r="78%">
-            <stop offset="0%" stopColor="#15333b" />
-            <stop offset="55%" stopColor="#0a1c22" />
-            <stop offset="100%" stopColor="#04090c" />
-          </radialGradient>
-          <radialGradient id="poeGlobeAtmo" cx="50%" cy="50%" r="50%">
-            <stop offset="74%" stopColor="rgba(120,200,210,0)" />
-            <stop offset="90%" stopColor="rgba(120,200,210,0.16)" />
-            <stop offset="100%" stopColor="rgba(120,200,210,0)" />
-          </radialGradient>
-          <filter id="poeGlobeSoft" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="6" />
-          </filter>
-          <filter id="poeGlobeGrain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
-            <feColorMatrix type="saturate" values="0" />
-            <feComponentTransfer><feFuncA type="linear" slope="0.05" /></feComponentTransfer>
-          </filter>
-          <clipPath id="poeGlobeSphereClip"><circle cx={CX} cy={CY} r={R} /></clipPath>
-        </defs>
+        {/* sphere — 솔리드 면 */}
+        <circle cx={CX} cy={CY} r={R} fill="#141414" />
 
-        {/* atmosphere */}
-        <circle cx={CX} cy={CY} r={R + 26} fill="url(#poeGlobeAtmo)" />
+        {/* graticule + 외곽 — 선 */}
+        <path d={path(d3.geoGraticule10())} fill="none" stroke="#3a3a3a" strokeWidth={0.6} />
+        <path d={path({ type: 'Sphere' })} fill="none" stroke="#e8e8e8" strokeWidth={1} />
 
-        {/* ocean sphere */}
-        <circle cx={CX} cy={CY} r={R} fill="url(#poeGlobeOcean)" />
-
-        {/* graticule */}
-        <path d={path(d3.geoGraticule10())} fill="none" stroke="rgba(150,200,205,0.10)" strokeWidth={0.6} />
-        <path d={path({ type: 'Sphere' })} fill="none" stroke="rgba(150,200,205,0.22)" strokeWidth={1} />
-
-        {/* grain */}
-        <circle cx={CX} cy={CY} r={R} fill="#000" filter="url(#poeGlobeGrain)" opacity={0.5} clipPath="url(#poeGlobeSphereClip)" />
-
-        {/* markers */}
+        {/* markers — 선 + 솔리드 면 */}
         {placed.filter((c) => c.visible).map((c) => {
           const isHov = c.id === hovered;
           return (
             <g key={c.id}>
-              <circle cx={c.x} cy={c.y} r={isHov ? 16 : 11} fill={c.color} opacity={isHov ? 0.34 : 0.22} filter="url(#poeGlobeSoft)" />
               {isHov && (
-                <circle cx={c.x} cy={c.y} r={12} fill="none" stroke={c.color} strokeWidth={1.4} opacity={0.9} />
+                <circle cx={c.x} cy={c.y} r={12} fill="none" stroke="#FFFFFF" strokeWidth={1.4} />
               )}
-              <circle cx={c.x} cy={c.y} r={isHov ? 6.2 : 4.6} fill={c.color} stroke="#06121599" strokeWidth={0.8} />
+              <circle cx={c.x} cy={c.y} r={isHov ? 6.2 : 4.6} fill={isHov ? '#FFFFFF' : '#E8E8E8'} stroke="#000000" strokeWidth={0.8} />
               {/* generous transparent hit area */}
               <circle
                 cx={c.x} cy={c.y} r={15} fill="transparent" style={{ cursor: 'pointer' }}
@@ -231,19 +186,6 @@ function GlobeD3({ countries = COUNTRIES, size = 480 }) {
           );
         })}
 
-        {/* color chip */}
-        {chip && (
-          <g className="poe-globe-chip-in" style={{ pointerEvents: 'none' }}>
-            <rect
-              x={chip.x} y={chip.y} width={chip.w} height={chip.h} rx={10}
-              fill="rgba(9,13,16,0.94)" stroke={chip.c.color + '66'} strokeWidth={1}
-            />
-            <rect x={chip.x + 14} y={chip.y + 16} width={64} height={64} rx={6} fill={chip.c.color} />
-            <text x={chip.x + 90} y={chip.y + 33} fill="#ECE7DE" style={{ font: '600 19px Georgia, serif' }}>{chip.c.name}</text>
-            <text x={chip.x + 90} y={chip.y + 53} fill="#9bb0b3" style={{ font: 'italic 13px Georgia, serif' }}>{chip.c.note}</text>
-            <text x={chip.x + 90} y={chip.y + 76} fill={chip.c.color} style={{ font: '600 12.5px ui-monospace, monospace', letterSpacing: '0.06em' }}>{chip.c.color.toUpperCase()}</text>
-          </g>
-        )}
       </svg>
     </Box>
   );

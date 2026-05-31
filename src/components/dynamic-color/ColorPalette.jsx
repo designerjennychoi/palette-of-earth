@@ -54,7 +54,7 @@ function ColorPalette({ colors = [], isVisible = true, size = 'md' }) {
                 <ColorChip color={color} onCopy={handleCopy} size={size} />
                 <Typography
                   sx={{
-                    fontFamily: '"DM Mono", monospace',
+                    fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
                     fontSize: '0.625rem',
                     color: '#504D49',
                     letterSpacing: '0.04em',

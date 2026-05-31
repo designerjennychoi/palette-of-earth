@@ -47,7 +47,7 @@ function CompareCard({ regionId, colorIndex, label, onCopy }) {
       </Box>
       <Typography
         sx={{
-          fontFamily: '"DM Mono", monospace',
+          fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
           fontSize: '0.625rem',
           color: 'text.disabled',
           letterSpacing: '0.04em',
@@ -164,7 +164,7 @@ function ColorComparison({ pairs = [] }) {
                 color: 'text.disabled',
                 letterSpacing: '0.1em',
                 mb: 4,
-                fontFamily: '"DM Mono", monospace',
+                fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
               }}
             >
               {pair.label}

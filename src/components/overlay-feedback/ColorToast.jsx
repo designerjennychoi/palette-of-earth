@@ -65,7 +65,7 @@ function ColorToast({ color, isOpen, onClose }) {
           />
           <Typography
             sx={{
-              fontFamily: '"DM Mono", monospace',
+              fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
               fontSize: '0.8125rem',
               color: '#8A8278',
               letterSpacing: '0.02em',
