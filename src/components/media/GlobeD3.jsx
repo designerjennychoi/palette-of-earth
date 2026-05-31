@@ -34,7 +34,7 @@ const COUNTRIES = [
   { id: 'pe', name: 'Peru', note: 'Andean ochre', color: '#C77B2B', lat: -10, lng: -76 },
   { id: 'it', name: 'Italy', note: 'Tuscan olive', color: '#8A9A4E', lat: 42, lng: 13 },
   { id: 'ch', name: 'Switzerland', note: 'Alpine ice', color: '#CFE0E8', lat: 47, lng: 8 },
-  { id: 'za', name: 'South Africa', note: 'Protea', color: '#E2658B', lat: -29, lng: 24 },
+  { id: 'za', name: 'South Africa', note: 'Canyon green', color: '#5A8040', lat: -29, lng: 24 },
   { id: 'id', name: 'Indonesia', note: 'Volcanic teal', color: '#15897A', lat: -2, lng: 118 },
   { id: 'mx', name: 'Mexico', note: 'Agave', color: '#6FA07A', lat: 23, lng: -102 },
   { id: 'cn', name: 'China', note: 'Loess earth', color: '#D6B05E', lat: 35, lng: 103 },
@@ -54,7 +54,27 @@ const COUNTRIES = [
   { id: 'ie', name: 'Ireland', note: 'Emerald', color: '#2E8B57', lat: 53, lng: -8 },
   { id: 'mn', name: 'Mongolia', note: 'Steppe', color: '#C4A35A', lat: 46, lng: 105 },
   { id: 'co', name: 'Colombia', note: 'Coffee & emerald', color: '#4E7D3A', lat: 4, lng: -73 },
-  { id: 'ph', name: 'Philippines', note: 'Coral', color: '#FF8364', lat: 13, lng: 122 },
+  { id: 'ph', name: 'Philippines', note: 'Coral sea', color: '#1E8299', lat: 13, lng: 122 },
+  { id: 'gb', name: 'United Kingdom', note: 'Scottish Highlands', color: '#7A9E7E', lat: 54, lng: -2 },
+  { id: 'de', name: 'Germany', note: 'Black Forest', color: '#5C7A4E', lat: 51, lng: 10 },
+  { id: 'kr', name: 'South Korea', note: 'Autumn maple', color: '#C4825A', lat: 36, lng: 128 },
+  { id: 'my', name: 'Malaysia', note: 'Jungle green', color: '#2D7A3A', lat: 4, lng: 109 },
+  { id: 'se', name: 'Sweden', note: 'Nordic forest', color: '#A8C5D0', lat: 62, lng: 16 },
+  { id: 'at', name: 'Austria', note: 'Alpine meadow', color: '#A8C5DA', lat: 47, lng: 14 },
+  { id: 'hr', name: 'Croatia', note: 'Adriatic coast', color: '#3A8FA8', lat: 45, lng: 16 },
+  { id: 'et', name: 'Ethiopia', note: 'Danakil earth', color: '#C4813B', lat: 9, lng: 40 },
+  { id: 'na', name: 'Namibia', note: 'Namib sand', color: '#D4A86A', lat: -22, lng: 18 },
+  { id: 'ae', name: 'UAE', note: 'Desert dunes', color: '#D4B483', lat: 24, lng: 54 },
+  { id: 'ir', name: 'Iran', note: 'Persian clay', color: '#C07840', lat: 32, lng: 53 },
+  { id: 'kz', name: 'Kazakhstan', note: 'Golden steppe', color: '#C4B06A', lat: 48, lng: 68 },
+  { id: 've', name: 'Venezuela', note: 'Angel Falls', color: '#3A9E6A', lat: 8, lng: -66 },
+  { id: 'ec', name: 'Ecuador', note: 'Andean green', color: '#4A9E7A', lat: -2, lng: -78 },
+  { id: 'cr', name: 'Costa Rica', note: 'Volcanic forest', color: '#3A8C4A', lat: 10, lng: -84 },
+  { id: 'cu', name: 'Cuba', note: 'Tropical valley', color: '#4AAF7C', lat: 22, lng: -79 },
+  { id: 'ug', name: 'Uganda', note: 'Gorilla highlands', color: '#4A8C4A', lat: 1, lng: 32 },
+  { id: 'gh', name: 'Ghana', note: 'West African coast', color: '#C4824A', lat: 8, lng: -1 },
+  { id: 'ru', name: 'Russia', note: 'Taiga & Baikal', color: '#8B9E7A', lat: 61, lng: 105 },
+  { id: 'sa', name: 'Saudi Arabia', note: 'AlUla desert', color: '#C9A87A', lat: 24, lng: 45 },
 ];
 
 const W = 760;
@@ -166,7 +186,7 @@ function GlobeD3({ countries = COUNTRIES, size = 480, onHoverCountry }) {
 
         {/* graticule + 외곽 — 선 */}
         <path d={path(d3.geoGraticule10())} fill="none" stroke="#3a3a3a" strokeWidth={0.6} />
-        <path d={path({ type: 'Sphere' })} fill="none" stroke="#e8e8e8" strokeWidth={1} />
+        <path d={path({ type: 'Sphere' })} fill="none" stroke="#e8e8e8" strokeWidth={0.6} />
 
         {/* markers — 선 + 솔리드 면 */}
         {placed.filter((c) => c.visible).map((c) => {

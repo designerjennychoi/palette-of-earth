@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import { defaultTheme as theme } from './styles/themes';
 import PaletteOfEarth from './pages/PaletteOfEarth.jsx';
+import PhotoGallery from './pages/PhotoGallery.jsx';
 
 function HomePage() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/palette-of-earth" element={<PaletteOfEarth />} />
+          <Route path="/gallery" element={<PhotoGallery />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

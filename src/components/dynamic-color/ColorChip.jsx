@@ -56,7 +56,7 @@ function ColorChip({ color, name = '', onCopy, size = 'md' }) {
         component="span"
         sx={{
           display: 'block',
-          fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
+          fontFamily: '"Outfit", "Pretendard", system-ui, sans-serif',
           fontSize: '0.75rem',
           letterSpacing: '0.04em',
           color: '#F0EBE3',
@@ -68,7 +68,7 @@ function ColorChip({ color, name = '', onCopy, size = 'md' }) {
         component="span"
         sx={{
           display: 'block',
-          fontFamily: '"Lexend", "Pretendard", system-ui, sans-serif',
+          fontFamily: '"Outfit", "Pretendard", system-ui, sans-serif',
           fontSize: '0.6875rem',
           color: '#8A8278',
         }}

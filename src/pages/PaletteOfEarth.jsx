@@ -64,10 +64,10 @@ const regionByName = Object.fromEntries(regions.map((r) => [r.nameEn, r]));
 const COUNTRY_IMAGE = {
   // regions.js 보유 사진 (2장 블렌드 중 layer1 사용)
   no: regionByName['Norway']?.images.layer1,
-  ma: regionByName['Morocco']?.images.layer1,
   nz: regionByName['New Zealand']?.images.layer1,
-  is: regionByName['Iceland']?.images.layer1,
   // Unsplash 자연 사진 (36개국 전체)
+  is: '/images/regions/is-nature.jpg',
+  ma: '/images/regions/ma-nature.jpg',
   jp: '/images/regions/jp-nature.jpg',
   eg: '/images/regions/eg-nature.jpg',
   br: '/images/regions/br-nature.jpg',
@@ -100,6 +100,26 @@ const COUNTRY_IMAGE = {
   mn: '/images/regions/mn-nature.jpg',
   co: '/images/regions/co-nature.jpg',
   ph: '/images/regions/ph-nature.jpg',
+  gb: '/images/regions/gb-nature.jpg',
+  de: '/images/regions/de-nature.jpg',
+  kr: '/images/regions/kr-nature.jpg',
+  my: '/images/regions/my-nature.jpg',
+  se: '/images/regions/se-nature.jpg',
+  at: '/images/regions/at-nature.jpg',
+  hr: '/images/regions/hr-nature.jpg',
+  et: '/images/regions/et-nature.jpg',
+  na: '/images/regions/na-nature.jpg',
+  ae: '/images/regions/ae-nature.jpg',
+  ir: '/images/regions/ir-nature.jpg',
+  kz: '/images/regions/kz-nature.jpg',
+  ve: '/images/regions/ve-nature.jpg',
+  ec: '/images/regions/ec-nature.jpg',
+  cr: '/images/regions/cr-nature.jpg',
+  cu: '/images/regions/cu-nature.jpg',
+  ug: '/images/regions/ug-nature.jpg',
+  gh: '/images/regions/gh-nature.jpg',
+  ru: '/images/regions/ru-nature.jpg',
+  sa: '/images/regions/sa-nature.jpg',
 };
 
 function HeroSection() {
@@ -119,14 +139,13 @@ function HeroSection() {
       component="section"
       id="hero"
       sx={{
-        minHeight: '100vh',
+        height: '100vh',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        px: { xs: 3, md: 8, lg: 12 },
-        py: { xs: 10, md: 0 },
         position: 'relative',
         overflow: 'hidden',
+        pt: { xs: 8, md: 10 },
       }}
     >
       {/* hover 풀스크린 — 자연 이미지 + 국가명(52px) + 컬러칩 4개(44×44px) */}
@@ -157,22 +176,16 @@ function HeroSection() {
               }}
             />
 
-            {/* 하단 가독성 스크림 */}
-            <Box
-              sx={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 45%, transparent 100%)',
-              }}
-            />
+            {/* 스크림 20% */}
+            <Box sx={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }} />
 
-            {/* 국가명 + 컬러칩 + HEX — 화면 중앙 */}
+            {/* 국가명 + 컬러칩 + HEX — 랜딩 카피와 동일한 top 위치, 가운데 정렬 */}
             <Box
               sx={{
                 position: 'absolute',
-                top: '50%',
+                top: { xs: 64, md: 80 },
                 left: '50%',
-                transform: 'translate(-50%, -50%)',
+                transform: 'translateX(-50%)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -183,16 +196,27 @@ function HeroSection() {
                 variant="h1"
                 component="p"
                 sx={{
-                  fontSize: '92px',
+                  fontSize: '44px',
                   fontStyle: 'normal',
-                  fontWeight: 500,
+                  fontWeight: 400,
                   color: '#FFFFFF',
                   lineHeight: 1.1,
                   textAlign: 'center',
-                  textShadow: '0 2px 12px rgba(0,0,0,0.4)',
                 }}
               >
                 {hoveredCountry.name}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: '16px',
+                  fontWeight: 300,
+                  color: 'rgba(255,255,255,0.75)',
+                  textAlign: 'center',
+                  letterSpacing: '0.04em',
+                  mt: -1,
+                }}
+              >
+                {hoveredCountry.note}
               </Typography>
 
               {/* 컬러칩 4개 + HEX */}
@@ -202,15 +226,24 @@ function HeroSection() {
                     key={i}
                     sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}
                   >
-                    <Box sx={{ width: 44, height: 44, backgroundColor: color, flexShrink: 0 }} />
+                    <Box
+                      sx={{
+                        width: 44,
+                        height: 44,
+                        borderRadius: '50%',
+                        backgroundColor: color,
+                        border: '1px solid #FFFFFF',
+                        flexShrink: 0,
+                      }}
+                    />
                     <Typography
                       sx={{
                         fontSize: '10px',
+                        fontWeight: 400,
                         color: '#FFFFFF',
-                        fontFamily: '"Lexend", sans-serif',
+                        fontFamily: '"Outfit", sans-serif',
                         letterSpacing: '0.06em',
                         textTransform: 'uppercase',
-                        textShadow: '0 1px 4px rgba(0,0,0,0.6)',
                       }}
                     >
                       {color.toUpperCase()}
@@ -223,47 +256,32 @@ function HeroSection() {
         )}
       </AnimatePresence>
 
-      {/* 워드마크 — top-left, 20pt */}
+      {/* 헤더 — 가운데 정렬, normal flow */}
       <Box
         component={motion.div}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        sx={{
-          position: 'absolute',
-          top: { xs: 3, md: 5 },
-          left: { xs: 3, md: 8, lg: 12 },
-          zIndex: 2,
-        }}
+        sx={{ position: 'relative', zIndex: 2, textAlign: 'center', px: 3 }}
       >
         <Typography
           variant="h1"
           component="h1"
-          sx={{ fontSize: '20pt', fontStyle: 'normal', lineHeight: 1.2, letterSpacing: '-0.01em', m: 0 }}
+          sx={{ fontSize: '44px', fontStyle: 'normal', lineHeight: 1.2, letterSpacing: '-0.01em', m: 0 }}
         >
           Palette of Earth
         </Typography>
         <Typography
           variant="body2"
-          sx={{ mt: 1.5, maxWidth: 300, fontSize: '11pt', color: 'text.secondary', lineHeight: 1.5 }}
+          sx={{ mt: 1.5, fontSize: '20px', fontWeight: 300, color: 'text.secondary', lineHeight: 1.5 }}
         >
-          Explore the colors shaped by nature across different regions of the world.
-          Hover a pin on the globe, or scroll to begin.
+          Explore the colours shaped by nature across the world. Hover over a pin to begin.
         </Typography>
       </Box>
 
-      {/* 풀블리드 자이언트 글로브 — 뷰포트 세로 중앙, top·bottom·right 잘림 */}
-      {/* 정렬 박스(중앙 정렬 transform)와 애니메이션 박스(scale/fade)를 분리해 transform 충돌 방지 */}
+      {/* 글로브 — 헤더 아래, 가운데 정렬, 하단 잘림 */}
       <Box
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          right: { xs: '-95%', sm: '-60%', md: '-35%', lg: '-25%' },
-          transform: 'translateY(-50%)',
-          width: 1440,
-          maxWidth: 'none',
-          zIndex: 1,
-        }}
+        sx={{ position: 'relative', zIndex: 1, width: '80vw', mt: '-16px', flexShrink: 0 }}
       >
         <Box
           component={motion.div}
